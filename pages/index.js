@@ -10,7 +10,7 @@ class Counter extends React.Component {
   }
 
   componentDidMount () {
-    this.timer = this.props.dispatch(startClock())
+//    this.timer = this.props.dispatch(startClock())
   }
 
   componentWillUnmount () {
