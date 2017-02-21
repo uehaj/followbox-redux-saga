@@ -1,27 +1,28 @@
-import React from 'react'
-import { reducer, initStore, startClock } from '../store'
+import React from 'react';
+import { reducer, initStore, startClock } from '../store';
 import withRedux  from 'next-redux-wrapper';
-import Page from '../components/Page'
+import * as Actions from '../actions';
+import Page from '../components/Page';
 
 class Counter extends React.Component {
   static getInitialProps ({ store, isServer }) {
-    store.dispatch({ type: 'TICK', light: !isServer, ts: Date.now() })
-    return { isServer }
+//    store.dispatch(Actions.tick({ light: !isServer }));
+    return { isServer };
   }
 
   componentDidMount () {
-//    this.timer = this.props.dispatch(startClock())
+    this.props.dispatch(Actions.timerStart());
   }
 
   componentWillUnmount () {
-    clearInterval(this.timer)
+    this.props.dispatch(Actions.timerStop());
   }
 
   render () {
     return (
       <Page title='Index Page' linkTo='/other' />
-    )
+    );
   }
 }
 
-export default withRedux(initStore)(Counter)
+export default withRedux(initStore)(Counter);
