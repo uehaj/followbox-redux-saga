@@ -1,3 +1,8 @@
-export const TICK = 'TICK';
-export const TIMER_START = 'TIMER_START';
-export const TIMER_STOP = 'TIMER_STOP';
+
+// naming rule:
+// USER_* ... User Action
+// SYS_* ... System Action
+// SET_*, UPDATE_* ... Reducer Action
+export const USER_REFRESH = 'USER_REFRESH';
+export const USER_CLOSE = 'USER_CLOSE';
+export const SET_FOLLOWER = 'SET_FOLLOWER';

@@ -1,19 +1,21 @@
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import * as Types from './types';
-import * as Actions from './actions';
 import rootSaga from './sagas';
 
-export const reducer = (state = { lastUpdate: 0, light: false }, action) => {
+const FOLLOWERS = 10;
+
+export const reducer = (state = { followers: [null, null, null] }, action) => {
+  console.log('1=>',action);
   switch (action.type) {
-  case Types.TICK: return { lastUpdate: action.payload.ts, light: !!action.payload.light };
+  case Types.SET_FOLLOWER: {
+    let tmp = [].concat(state.followers);
+    tmp[action.payload.idx] = action.payload.follower;
+    return tmp;
+  };
   default: return state;
   }
-}
-
-//export const startClock = () => dispatch => {
-//  return setInterval(() => dispatch(tick( {light: true, ts: Date.now() }));
-//}
+};
 
 export const initStore = (initialState) => {
   const sagaMiddleware = createSagaMiddleware();

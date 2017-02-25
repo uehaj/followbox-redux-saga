@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions';
 import * as Types from './types';
 
-export const tick = createAction(Types.TICK);
-export const timerStart = createAction(Types.TIMER_START);
-export const timerStop = createAction(Types.TIMER_STOP);
+export const refresh = createAction(Types.USER_REFRESH);
+export const close = createAction(Types.USER_CLOSE);
+export const setFollower = createAction(Types.SET_FOLLOWER);
