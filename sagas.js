@@ -4,19 +4,23 @@ import * as Actions from './actions';
 import * as Types from './types';
 import * as Api from './services/api';
 
-export function* close(action) {
-  console.log('close 1=>',action);
-  yield put(Actions.setFollower({idx: action.payload}));
-  console.log("close");
+function* close(users, action) {
+  const user = users[Math.floor(Math.random()*users.length)];
+  yield put(Actions.setFollower({idx: action.payload, user}));
 }
 
 export function* refresh() {
+  yield put(Actions.setFollower({idx: 0, user:{avatar_url: null}}));
+  yield put(Actions.setFollower({idx: 1, user:{avatar_url: null}}));
+  yield put(Actions.setFollower({idx: 2, user:{avatar_url: null}}));
+
   try {
     const users = yield call(Api.getNewUsers);
-    console.log("refresh"+users);
-    yield fork(close, 0, users[Math.floor(Math.random()*users.length)]);
-    yield fork(close, 1, users[Math.floor(Math.random()*users.length)]);
-    yield fork(close, 2, users[Math.floor(Math.random()*users.length)]);
+    yield* close(users, Actions.close(0));
+    yield* close(users, Actions.close(1));
+    yield* close(users, Actions.close(2));
+
+    yield takeLatest(Types.USER_CLOSE, close, users);
   } catch (e) {
     console.error(e);
   }
@@ -24,6 +28,5 @@ export function* refresh() {
 
 // single entry point to start all Sagas at once
 export default function* rootSaga() {
-  yield takeLatest(Types.USER_CLOSE, close);
   yield takeLatest(Types.USER_REFRESH, refresh);
 }
