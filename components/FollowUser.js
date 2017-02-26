@@ -1,22 +1,22 @@
 export default (props) =>
   <div>
     <style jsx>{`
-            li {
-                padding: 5px;
-            }
-            li img {
-                width: 40px;
-                height: 40px;
-                border-radius: 20px;
-            }
-            li .username, li .close {
-                padding: 5px;
-                display: inline-block;
-                position: relative;
-                bottom: 15px;
-                left: 5px;
-             }
-          `}
+      li {
+          padding: 5px;
+      }
+      li img {
+          width: 40px;
+          height: 40px;
+          border-radius: 20px;
+      }
+      li .username, li .close {
+          padding: 5px;
+          display: inline-block;
+          position: relative;
+          bottom: 15px;
+          left: 5px;
+       }
+    `}
     </style>
     <li className="suggestion">
       <img src={props.imgSrc} />

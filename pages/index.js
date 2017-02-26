@@ -11,27 +11,24 @@ class Index extends Component {
     this.props.dispatch(Actions.refresh());
   }
   render () {
-    console.log("props=", this.props);
+    const { followers, dispatch } = this.props;
     return (
       <div>
         <Head>
-          <style jsx>{`
+          <link rel="stylesheet" type="text/css" href="https://fiddle.jshell.net/css/normalize.css" />
+          <title>Followbox sample by redux-saga</title>
+        </Head>
+        <style jsx global>{`
           body {
               font-family: sans-serif;
               padding: 10px;
           }
-          h2 {
-              font-weight: bold;
-              display: inline-block;
-          }
-          `}</style>
-          <link rel="stylesheet" type="text/css" href="http://fiddle.jshell.net/css/normalize.css" />
-          <title>Followbox sample by redux-saga</title>
-        </Head>
-        <FollowBox onClick={()=>this.props.dispatch(Actions.refresh())}>
-          <FollowUser imgSrc={this.props.followers[0].avatar_url} name={this.props.followers[0].login} onClick={()=>this.props.dispatch(Actions.close(0))}/>
-          <FollowUser imgSrc={this.props.followers[1].avatar_url} name={this.props.followers[1].login} onClick={()=>this.props.dispatch(Actions.close(1))}/>
-          <FollowUser imgSrc={this.props.followers[2].avatar_url} name={this.props.followers[2].login} onClick={()=>this.props.dispatch(Actions.close(2))}/>
+        `}
+        </style>
+        <FollowBox onClick={() => dispatch(Actions.refresh())}>
+          <FollowUser imgSrc={followers[0].avatar_url} name={followers[0].login} onClick={() => dispatch(Actions.close(0))}/>
+          <FollowUser imgSrc={followers[1].avatar_url} name={followers[1].login} onClick={() => dispatch(Actions.close(1))}/>
+          <FollowUser imgSrc={followers[2].avatar_url} name={followers[2].login} onClick={() => dispatch(Actions.close(2))}/>
         </FollowBox>
       </div>
     );

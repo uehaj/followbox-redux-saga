@@ -1,5 +1,5 @@
 {
-  "name": "with-redux",
+  "name": "followbox-redux-saga",
   "version": "1.0.0",
   "scripts": {
     "dev": "next",
