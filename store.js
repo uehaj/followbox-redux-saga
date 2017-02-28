@@ -9,21 +9,39 @@ const initialState = {
     { avatar_url: '' },
     { avatar_url: '' },
     { avatar_url: '' },
-  ]
+  ],
+  modal: {
+    show: false,
+    title: 'Modal',
+    content: null,
+  },
+  loading: false,
 };
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
   case Types.SET_FOLLOWER: {
-    const tmp = {
+    return {
+      ...state,
       followers: [
         ...state.followers.slice(0, action.payload.idx),
         action.payload.user,
         ...state.followers.slice(action.payload.idx+1, state.followers.length)
-      ]
+      ],
     };
-    return tmp;
   };
+  case Types.SET_MODAL: {
+    return {
+      ...state,
+      modal: action.payload,
+    };
+  }
+  case Types.SET_LOADING: {
+    return {
+      ...state,
+      loading: action.payload,
+    };
+  }
   default: return state;
   }
 };

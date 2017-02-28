@@ -20,7 +20,7 @@ export default (props) =>
     </style>
     <div className="container">
       <div className="header">
-        <h2>Who to follow</h2><a href="#" className="refresh" onClick={props.onClick}>Refresh</a>
+      <h2>Who to follow</h2><button className="refresh" onClick={props.onClick} disabled={props.loading}>Refresh</button>
       </div>
       <ul className="suggestions">
         {props.children}
