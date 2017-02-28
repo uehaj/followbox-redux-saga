@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { reducer, initStore, startClock } from '../store';
-import withRedux  from 'next-redux-wrapper';
+import withRedux from 'next-redux-wrapper';
 import * as Actions from '../actions';
 import Head from 'next/head';
 import FollowBox from '../components/FollowBox';
@@ -17,7 +17,7 @@ class Index extends Component {
 
   componentDidMount() {
     document.body.addEventListener('keydown', this.handleKeyDown.bind(this));
-    this.props.dispatch(Actions.refresh({verify: false}));
+    this.props.dispatch(Actions.refresh({ verify: false }));
   }
 
   componentWillUnmount() {
@@ -31,28 +31,28 @@ class Index extends Component {
       <div>
         {
           modal.show &&
-            <Modal
-                onOk={() => dispatch(Actions.uiModalOk())}
-                onCancel={() => dispatch(Actions.uiModalCancel())}
-                title={modal.title}>
-              {modal.content}
-            </Modal>
+          <Modal
+            onOk={() => dispatch(Actions.uiModalOk())}
+            onCancel={() => dispatch(Actions.uiModalCancel())}
+            title={modal.title}>
+            {modal.content}
+          </Modal>
         }
         <Head>
           <link rel="stylesheet" type="text/css" href="/static/css/normalize.css" />
           <link rel="stylesheet" type="text/css" href="/static/css/global.css" />
           <title>Followbox sample by redux-saga</title>
         </Head>
-        <FollowBox onClick={() => dispatch(Actions.refresh({verify: true}))} loading={this.props.loading}>
+        <FollowBox onClick={() => dispatch(Actions.refresh({ verify: true }))} loading={this.props.loading}>
           {
-            followers && [0,1,2].map(
+            followers && [0, 1, 2].map(
               (i) =>
                 <FollowUser
-                    key={i}
-                    imgSrc={followers[i].avatar_url}
-                    name={followers[i].login}
-                    onClick={() => dispatch(Actions.remove({idx: i, verify: true}))}
-                 />
+                  key={i}
+                  imgSrc={followers[i].avatar_url}
+                  name={followers[i].login}
+                  onClick={() => dispatch(Actions.remove({ idx: i, verify: true }))}
+                />
             )
           }
         </FollowBox>

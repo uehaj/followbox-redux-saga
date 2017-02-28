@@ -20,29 +20,29 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-  case Types.SET_FOLLOWER: {
-    return {
-      ...state,
-      followers: [
-        ...state.followers.slice(0, action.payload.idx),
-        action.payload.user,
-        ...state.followers.slice(action.payload.idx+1, state.followers.length)
-      ],
+    case Types.SET_FOLLOWER: {
+      return {
+        ...state,
+        followers: [
+          ...state.followers.slice(0, action.payload.idx),
+          action.payload.user,
+          ...state.followers.slice(action.payload.idx + 1, state.followers.length)
+        ],
+      };
     };
-  };
-  case Types.SET_MODAL: {
-    return {
-      ...state,
-      modal: action.payload,
-    };
-  }
-  case Types.SET_LOADING: {
-    return {
-      ...state,
-      loading: action.payload,
-    };
-  }
-  default: return state;
+    case Types.SET_MODAL: {
+      return {
+        ...state,
+        modal: action.payload,
+      };
+    }
+    case Types.SET_LOADING: {
+      return {
+        ...state,
+        loading: action.payload,
+      };
+    }
+    default: return state;
   }
 };
 

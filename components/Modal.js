@@ -61,7 +61,8 @@ export default class extends Component {
           .open {
               display: block;
           }
-        `}</style>
+        `}
+        </style>
         <div className="modal">
           <div className="modal-window">
             <span className="close" onClick={this.props.onCancel}>&times;</span>
