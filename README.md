@@ -19,3 +19,6 @@ Deploy it to the cloud with [now](https://zeit.co/now) ([download](https://zeit.
 now
 ```
 
+## Working demo on now
+
+[DEMO](https://followbox-redux-saga-vevubwrmcf.now.sh)
