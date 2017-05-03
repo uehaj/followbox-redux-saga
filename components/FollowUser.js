@@ -1,6 +1,7 @@
-export default (props) =>
+export default props => (
   <div>
-    <style jsx>{`
+    <style jsx>
+      {`
       li {
           padding: 5px;
       }
@@ -23,4 +24,5 @@ export default (props) =>
       <a href="#" target="_blank" className="username">{props.name}</a>
       <a href="#" className="close close1" onClick={props.onClick}>x</a>
     </li>
-  </div>;
+  </div>
+);

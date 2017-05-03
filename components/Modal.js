@@ -1,10 +1,11 @@
 import { Component } from 'react';
 
 export default class extends Component {
-  render () {
+  render() {
     return (
       <div>
-        <style jsx>{`
+        <style jsx>
+          {`
           .button {
               padding: 10px;
               font-size: 14px;
@@ -65,12 +66,14 @@ export default class extends Component {
         </style>
         <div className="modal">
           <div className="modal-window">
-            <span className="close" onClick={this.props.onCancel}>&times;</span>
+            <span className="close" onClick={this.props.onCancel}>×</span>
             <h3>{this.props.title}</h3>
             <hr />
             {this.props.children}
             <button className="button" onClick={this.props.onOk}>OK</button>
-            <button className="button cancel" onClick={this.props.onCancel}>Cancel</button>
+            <button className="button cancel" onClick={this.props.onCancel}>
+              Cancel
+            </button>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 export async function getNewUsers() {
-  const randomOffset = Math.floor(Math.random()*500);
+  const randomOffset = Math.floor(Math.random() * 500);
   const url = 'https://api.github.com/users?since=' + randomOffset;
 
   const resp = await fetch(url, { method: 'GET' });
