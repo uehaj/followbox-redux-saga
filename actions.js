@@ -1,5 +1,12 @@
+// @flow
+
 import { createAction } from 'redux-actions';
 import * as Types from './types';
+
+export type Action = {
+  type: string,
+  payload: any
+};
 
 export const refresh = createAction(Types.UI_REFRESH);
 export const remove = createAction(Types.UI_REMOVE);
@@ -10,3 +17,4 @@ export const uiModalCancel = createAction(Types.UI_MODAL_CANCEL);
 export const setFollower = createAction(Types.SET_FOLLOWER);
 export const setModal = createAction(Types.SET_MODAL);
 export const setLoading = createAction(Types.SET_LOADING);
+

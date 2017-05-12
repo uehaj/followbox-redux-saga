@@ -1,10 +1,24 @@
+// @flow
+// See: http://blog.namiking.net/post/2016/05/react-redux-using-flow-example/
+
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import createLogger from 'redux-logger';
 import * as Types from './types';
+import type { Action } from './actions';
 import rootSaga from './sagas';
 
-const initialState = {
+interface FollowBoxState {
+  followers: { avatar_url: string }[],
+  modal: {
+    show: boolean,
+    title: string,
+    content: any
+  },
+  loading: boolean
+}
+
+const initialState: FollowBoxState = {
   followers: [{ avatar_url: '' }, { avatar_url: '' }, { avatar_url: '' }],
   modal: {
     show: false,
@@ -14,7 +28,7 @@ const initialState = {
   loading: false,
 };
 
-export const reducer = (state = initialState, action) => {
+export const reducer = (state: FollowBoxState = initialState, action: Action) => {
   switch (action.type) {
     case Types.SET_FOLLOWER: {
       return {
@@ -46,12 +60,12 @@ export const reducer = (state = initialState, action) => {
   }
 };
 
-export const initStore = initialState => {
+export const initStore = (init: FollowBoxState) => {
   const sagaMiddleware = createSagaMiddleware();
   const logger = createLogger();
   const store = createStore(
     reducer,
-    initialState,
+    init,
     applyMiddleware(sagaMiddleware, logger)
   );
   sagaMiddleware.run(rootSaga);

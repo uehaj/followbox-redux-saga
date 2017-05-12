@@ -25,7 +25,6 @@ class Index extends Component {
 
   render() {
     const { followers, modal, dispatch } = this.props;
-
     return (
       <div>
         {modal.show &&

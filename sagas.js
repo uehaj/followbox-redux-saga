@@ -1,3 +1,5 @@
+// @flow
+
 import { delay } from 'redux-saga';
 import {
   race,
@@ -11,6 +13,7 @@ import {
   takeLatest,
 } from 'redux-saga/effects';
 import * as Actions from './actions';
+import type { Action } from './actions';
 import * as Types from './types';
 import * as Api from './services/api';
 
@@ -40,7 +43,7 @@ function* remove(users, action) {
 }
 
 // refresh all folllowers
-export function* refresh(action) {
+export function* refresh<T>(action: Action): Iterable<T>  {
   // make sure to refresh
   if (
     action.payload.verify &&
@@ -70,6 +73,6 @@ export function* refresh(action) {
 }
 
 // single entry point to start all Sagas at once
-export default function* rootSaga() {
+export default function* rootSaga(): any {
   yield takeLatest(Types.UI_REFRESH, refresh);
 }

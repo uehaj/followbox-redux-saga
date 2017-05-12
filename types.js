@@ -1,3 +1,4 @@
+// @flow
 // action.type naming rule:
 // UI_* ... User Action
 // SYS_* ... System Action
