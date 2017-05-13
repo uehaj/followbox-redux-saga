@@ -18,7 +18,7 @@ import * as Types from './types';
 import * as Api from './services/api';
 
 // show modal dialog and get user response(Ok/Cancel) synchronously
-function* askYesNo(content) {
+function* askYesNo(content): Generator<*,*,*> {
   yield put(Actions.setModal({ show: true, title: 'Are you sure?', content }));
   const answer = yield race({
     ok: take(Types.UI_MODAL_OK),
@@ -29,7 +29,7 @@ function* askYesNo(content) {
 }
 
 // remove and get new follower
-function* remove(users, action) {
+function* remove(users, action): Generator<*,*,*> {
   // make sure to remove
   if (
     action.payload.verify &&
@@ -43,7 +43,7 @@ function* remove(users, action) {
 }
 
 // refresh all folllowers
-export function* refresh<T>(action: Action): Iterable<T>  {
+export function* refresh(action: Action): Generator<*,*,*> {
   // make sure to refresh
   if (
     action.payload.verify &&
@@ -73,6 +73,6 @@ export function* refresh<T>(action: Action): Iterable<T>  {
 }
 
 // single entry point to start all Sagas at once
-export default function* rootSaga(): any {
+export default function* rootSaga(): Generator<*,*,*> {
   yield takeLatest(Types.UI_REFRESH, refresh);
 }
